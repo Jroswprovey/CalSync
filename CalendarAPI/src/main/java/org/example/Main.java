@@ -29,7 +29,7 @@ public class Main {
             List<CalendarListEntry> calendarListItems = calendarList.getItems();
 
 
-            //Loops through calendar list and Gets the name (Summary) and its ID
+            //Loops through calendar list and Gets the name (Summary) and its ID.
             for (CalendarListEntry listEntry : calendarListItems){
                 System.out.println(
                        "Name: " +listEntry.getSummary() + " " +
