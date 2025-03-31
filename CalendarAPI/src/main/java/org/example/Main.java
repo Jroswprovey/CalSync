@@ -7,10 +7,7 @@
 package org.example;
 
 import com.google.api.client.util.DateTime;
-import com.google.api.services.calendar.model.CalendarList;
-import com.google.api.services.calendar.model.CalendarListEntry;
-import com.google.api.services.calendar.model.Event;
-import com.google.api.services.calendar.model.Events;
+import com.google.api.services.calendar.model.*;
 import org.example.CalendarServiceFactory;
 import com.google.api.services.calendar.Calendar;
 
@@ -21,15 +18,13 @@ public class Main {
     public static void main(String[] args) {
         try {
 
-
-
             DateTime now = new DateTime(System.currentTimeMillis());
             Calendar service = CalendarServiceFactory.getCalendarService();
+
             CalendarList calendarList = service.calendarList().list().execute();
             List<CalendarListEntry> calendarListItems = calendarList.getItems();
 
-
-            //Loops through calendar list and Gets the name (Summary) and its ID.
+            //Loops through the calendar list and Gets the name (Summary) and its ID.
             for (CalendarListEntry listEntry : calendarListItems){
                 System.out.println(
                        "Name: " +listEntry.getSummary() + " " +
@@ -37,7 +32,7 @@ public class Main {
                 );
             }
 
-
+            //Pulls events from Google using a calendar ID and puts that data into eventlist
             Events events = service.events().list("lstd69l1aru7q4hc4g7drourh3fm86sd@import.calendar.google.com")
                     .setMaxResults(10)
                     .setTimeMin(now)
@@ -54,6 +49,24 @@ public class Main {
                         "Time Zone: " + event.getStart().getTimeZone()
                 );
             }
+
+            //creating a new Test event
+            Event testEvent = new Event();
+
+
+            //Creates a new EVENT date time object to be used in the event creation
+            EventDateTime start = new EventDateTime().setDateTime(now);
+
+
+            //setting parameters for event
+            testEvent.setSummary("Test Event")
+                    .setStart(start)
+                    .setEnd(start);
+
+            //sending event off to google
+            service.events().insert("primary", testEvent).execute();
+
+
 
         } catch (Exception e) {
             e.printStackTrace();

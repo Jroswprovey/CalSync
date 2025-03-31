@@ -10,6 +10,8 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.util.store.FileDataStoreFactory;
+import com.google.api.services.calendar.CalendarScopes;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,7 +27,7 @@ public class CalendarServiceFactory {
 
     // For read/write, use CalendarScopes.CALENDAR, or for read-only, use CALENDAR_READONLY.
     // You can add more scopes in the list if needed.
-    private static final List<String> SCOPES = Collections.singletonList("https://www.googleapis.com/auth/calendar.readonly");
+    private static final List<String> SCOPES = Collections.singletonList(CalendarScopes.CALENDAR);
 
     // Adjust the path if your credentials.json is in another location.
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
