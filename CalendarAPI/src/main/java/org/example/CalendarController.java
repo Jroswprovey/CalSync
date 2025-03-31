@@ -7,7 +7,6 @@ import com.google.api.services.calendar.model.*;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
