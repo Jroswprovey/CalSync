@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CalSync.iml" filepath="$PROJECT_DIR$/.idea/CalSync.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CalendarAPI.iml" filepath="$PROJECT_DIR$/CalendarAPI.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/CalendarAPI.main.iml" filepath="$PROJECT_DIR$/.idea/modules/CalendarAPI.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/CalendarAPI.test.iml" filepath="$PROJECT_DIR$/.idea/modules/CalendarAPI.test.iml" />
     </modules>
