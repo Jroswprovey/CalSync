@@ -6,11 +6,12 @@ This is a demo class and will not be used in the end product and is just a POC
 
 */
 
-package org.example;
+package org.calsync;
 
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.*;
+import org.calsync.Service.CalendarServiceFactory;
 
 import java.util.List;
 

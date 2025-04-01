@@ -4,7 +4,7 @@
 
  */
 
-package org.example;
+package org.calsync;
 
 
 import org.springframework.boot.SpringApplication;

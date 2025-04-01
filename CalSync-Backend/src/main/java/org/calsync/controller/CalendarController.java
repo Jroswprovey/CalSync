@@ -1,5 +1,6 @@
-package org.example;
+package org.calsync.controller;
 
+import org.calsync.Service.CalendarServiceFactory;
 import org.springframework.web.bind.annotation.*;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar;
