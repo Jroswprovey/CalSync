@@ -1,6 +1,6 @@
 package org.calsync.controller;
 
-import org.calsync.Service.AuthenticationService;
+
 import org.calsync.Service.CalendarServiceFactory;
 import org.calsync.Service.EmailService;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +11,7 @@ import com.google.api.services.calendar.model.*;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/api")
@@ -48,18 +49,6 @@ public class CalendarController {
     ){
         EmailService.sendEmail(to, subject, text);
     }
-
-
-    @GetMapping("/Auth")
-    public boolean sendEmail(
-            @RequestParam String User,
-            @RequestParam String Password
-    ){
-
-        return AuthenticationService.Authenticate(User,Password);
-
-    }
-
 
 
 }

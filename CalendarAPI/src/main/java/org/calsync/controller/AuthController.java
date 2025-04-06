@@ -8,8 +8,9 @@
 //  so React login page can send the email and password to
 // the backend to log the user in.
 
-package com.calsync.email;
+package org.calsync.controller;
 
+import org.calsync.Service.LoginService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,12 @@ import java.util.Map;
 public class AuthController {
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        String email = loginRequest.getEmail();
-        String password = loginRequest.getPassword();
+    public ResponseEntity<?> login(@RequestBody LoginService loginService) {
+        String email = loginService.getEmail();
+        String password = loginService.getPassword();
 
         // TEMP: Replace this with real database check later
-        if ("test@email.com".equals(email) && "1234".equals(password)) {
+        if (email.equalsIgnoreCase("test@email.com") && password.equals("1234")) {
             return ResponseEntity.ok(Map.of(
                 "message", "Login successful",
                 "token", "fake-jwt-token-123"

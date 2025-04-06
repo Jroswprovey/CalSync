@@ -3,9 +3,9 @@
 // frontend sends email and password to Spring Boot 
 // backend to validate the user and log them into the app
 
-package com.calsync.email;
+package org.calsync.Service;
 
-public class LoginRequest {
+public class LoginService {
     private String email;
     private String password;
 
