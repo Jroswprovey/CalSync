@@ -1,6 +1,8 @@
 package org.calsync.controller;
 
+import org.calsync.Service.AuthenticationService;
 import org.calsync.Service.CalendarServiceFactory;
+import org.calsync.Service.EmailService;
 import org.springframework.web.bind.annotation.*;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar;
@@ -33,11 +35,29 @@ public class CalendarController {
     }
 
 
-
-
     @GetMapping("/ping")
     public String test(){
         return "pong";
+    }
+
+    @GetMapping("/sendEmail")
+    public void sendEmail(
+            @RequestParam String to,
+            @RequestParam String subject,
+            @RequestParam String text
+    ){
+        EmailService.sendEmail(to, subject, text);
+    }
+
+
+    @GetMapping("/Auth")
+    public boolean sendEmail(
+            @RequestParam String User,
+            @RequestParam String Password
+    ){
+
+        return AuthenticationService.Authenticate(User,Password);
+
     }
 
 

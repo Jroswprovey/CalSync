@@ -1,5 +1,5 @@
 /*
-Joseph Rosw-Provey
+//Joseph Rosw-Provey
 3/26/2025
 
 This is a demo class and will not be used in the end product and is just a POC
@@ -57,10 +57,8 @@ public class DemoClass {
                 //creating a new Test event
                 Event testEvent = new Event();
 
-
                 //Creates a new EVENT date time object to be used in the event creation
                 EventDateTime start = new EventDateTime().setDateTime(now);
-
 
                 //setting parameters for event
                 testEvent.setSummary("Test Event")
