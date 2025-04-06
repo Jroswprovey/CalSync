@@ -21,7 +21,7 @@ const Dashboard = () => {
       </div>
       <h2>Welcome to Your Dashboard</h2>
       <p>Book, reschedule, or follow up on your appointments.</p>
-      <p>Connect with people around the world!.</p>
+      <p>Easy scheduling ahead</p>
 
       {/* Calendar section in Dashboard - Alex */}
       <div className="dashboard-section">
