@@ -1,5 +1,6 @@
 package org.calsync.controller;
 
+import org.calsync.Service.AuthenticationService;
 import org.calsync.Service.CalendarServiceFactory;
 import org.calsync.Service.EmailService;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,17 @@ public class CalendarController {
             @RequestParam String text
     ){
         EmailService.sendEmail(to, subject, text);
+    }
+
+
+    @GetMapping("/Auth")
+    public boolean sendEmail(
+            @RequestParam String User,
+            @RequestParam String Password
+    ){
+
+        return AuthenticationService.Authenticate(User,Password);
+
     }
 
 
