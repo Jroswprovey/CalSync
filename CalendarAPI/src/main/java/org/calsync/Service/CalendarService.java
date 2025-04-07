@@ -19,7 +19,7 @@ import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
 
-public class CalendarServiceFactory {
+public class CalendarService {
 
     private static final String APPLICATION_NAME = "MyCalendarApp";
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
@@ -47,7 +47,7 @@ public class CalendarServiceFactory {
             throws IOException {
 
         // Load client secrets from the resource file.
-        InputStream in = CalendarServiceFactory.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+        InputStream in = CalendarService.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new IOException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
@@ -62,4 +62,19 @@ public class CalendarServiceFactory {
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
+
+    private static Calendar.Events getEvents(){
+
+
+        return
+    }
+
+
+
+
+
+
+
+
+
 }

@@ -4,7 +4,7 @@
 // Reads email + password from the frontend
 // Validates credentials (mock logic for now)
 
-// To do: Start  Spring Boot backend
+// To do: Start Spring Boot backend
 //  so React (front end) login page can send the email and password to
 // the backend to log the user in.
 
@@ -23,8 +23,8 @@ import java.util.Map;
 public class AuthController {
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginService loginService) {
-        String email = loginService.getEmail();
+        public ResponseEntity<?> login(@RequestBody LoginService loginService) {
+        String email = loginService.getUsername();
         String password = loginService.getPassword();
 
         // TEMP: Replace this with real database check later
