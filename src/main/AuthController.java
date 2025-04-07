@@ -5,7 +5,7 @@
 // Validates credentials (mock logic for now)
 
 // To do: Start  Spring Boot backend
-//  so React login page can send the email and password to
+//  so React (front end) login page can send the email and password to
 // the backend to log the user in.
 
 package com.calsync.email;

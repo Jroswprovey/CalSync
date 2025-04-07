@@ -1,3 +1,5 @@
+// package name : package com.calsync.email
+
 package com.calsync.email;
 
 import jakarta.mail.*;

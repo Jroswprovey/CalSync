@@ -1,0 +1,154 @@
+
+/* dashboard.css */
+
+.dashboard-container {
+    padding: 40px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .logout-btn {
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .dashboard-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+
+  /* Adding the calendad - Alex */
+  .react-calendar {
+    border: 2px solid red;
+    display: block !important;
+    opacity: 1 !important;
+    height: auto !important;
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border: none;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+  }
+
+  /* Adding the "Create" button and after the meeting type options - Alex */
+  .create-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    background-color: white;
+    border: 2px solid #3f51b5;
+    color: #3f51b5;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: all 0.2s ease;
+  }
+
+  /* Adding the "Create" button and after the meeting type options - Alex */
+  .create-btn:hover {
+    background-color: #3f51b5;
+    color: white;
+  }
+
+  /* Meeting Options */
+.create-options {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-btn {
+  padding: 10px 20px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.option-btn:hover {
+  background-color: #c5c5c5;
+}
+
+/* Modal overlay (POPUP to create appointment)- Alex */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal box */
+.modal {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+}
+
+/* Slider inside modal */
+.modal input[type="range"] {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* Buttons inside modal */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-buttons button:first-child {
+  background-color: #ccc;
+}
+
+.modal-buttons button:last-child {
+  background-color: #4caf50;
+  color: white;
+}
+
+
+
+
+  
