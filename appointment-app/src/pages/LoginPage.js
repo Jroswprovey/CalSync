@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+
+//variables must stay the same name across the backend and front end
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +17,7 @@ const LoginPage = () => {
     
     const credentials = { email, password };
 
+    //sending request to backend
     try {
       const response = await fetch("http://localhost:8080/api/auth/login", {
         method: "POST",
@@ -24,11 +27,12 @@ const LoginPage = () => {
         body: JSON.stringify(credentials),
       });
 
+      //if request goes through wait for response, then wait for response from the back end
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful:", data);
 
-        // authentication tokens;
+        //authentication tokens;
         navigate("/dashboard");
       } else {
         alert("Login failed. Please check your email and password.");
