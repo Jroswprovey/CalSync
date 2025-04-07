@@ -10,7 +10,7 @@
 
 package org.calsync.controller;
 
-import org.calsync.Service.LoginService;
+import org.calsync.DTO.LoginRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +23,9 @@ import java.util.Map;
 public class AuthController {
 
     @PostMapping("/login")
-        public ResponseEntity<?> login(@RequestBody LoginService loginService) {
-        String email = loginService.getUsername();
-        String password = loginService.getPassword();
+        public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        String email = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
 
         // TEMP: Replace this with real database check later
         if (email.equalsIgnoreCase("test@email.com") && password.equals("1234")) {
