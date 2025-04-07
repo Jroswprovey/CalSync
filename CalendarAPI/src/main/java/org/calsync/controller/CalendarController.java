@@ -8,10 +8,9 @@
 package org.calsync.controller;
 
 
+import org.calsync.DTO.CalendarRequest;
 import org.calsync.Service.CalendarService;
 import org.springframework.web.bind.annotation.*;
-import com.google.api.client.util.DateTime;
-import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.*;
 
 import java.io.IOException;
@@ -23,20 +22,13 @@ import java.util.List;
 @RequestMapping("/api")
 public class CalendarController {
 
-    @GetMapping("/calendar")
-    public List<Event> getCalendarSummaries() throws IOException, GeneralSecurityException {
-        DateTime now = new DateTime(System.currentTimeMillis());
-
-        Calendar service = CalendarService.getCalendarService();
-
-        Events events = service.events().list("primary")
-                .setMaxResults(10)
-                .setTimeMin(now)
-                .setOrderBy("startTime")
-                .setSingleEvents(true)
-                .execute();
-
-        return events.getItems();
+    @PostMapping("/calendar")
+    public List<Event> getCalendarSummaries( @RequestBody CalendarRequest calendarRequest) throws IOException, GeneralSecurityException {
+        return CalendarService.getEvents(
+                calendarRequest.getMaxResults(),
+                calendarRequest.getDateTime(),
+                calendarRequest.getQuery())
+                .getItems();
     }
 
 
