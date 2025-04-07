@@ -35,7 +35,9 @@
   /* Adding the calendad - Alex */
   .react-calendar {
     border: 2px solid red;
-    display: block;
+    display: block !important;
+    opacity: 1 !important;
+    height: auto !important;
     width: 100%;
     max-width: 500px;
     background-color: white;
