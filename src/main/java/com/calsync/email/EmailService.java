@@ -7,8 +7,9 @@ import java.util.Properties;
 public class EmailService {
 
     // Retrieve email credentials from environment variables
-    private static final String USERNAME = System.getenv("EMAIL_USER");
-    private static final String PASSWORD = System.getenv("EMAIL_PASS");
+    String username = System.getenv("EMAIL_USER");
+    String password = System.getenv("EMAIL_PASS");
+
 
     public static void sendEmail(String to, String subject, String text) {
         // Set up SMTP properties for Gmail
