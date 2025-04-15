@@ -9,7 +9,7 @@ package org.calsync.controller;
 
 
 import org.calsync.DTO.CalendarRequest;
-import org.calsync.Service.CalendarService;
+import org.calsync.Service.GoogleCalendarAPIService;
 import org.springframework.web.bind.annotation.*;
 import com.google.api.services.calendar.model.*;
 
@@ -24,7 +24,7 @@ public class CalendarController {
 
     @PostMapping("/calendar")
     public List<Event> getCalendarSummaries( @RequestBody CalendarRequest calendarRequest) throws IOException, GeneralSecurityException {
-        return CalendarService.getEvents(
+        return GoogleCalendarAPIService.getEvents(
                 calendarRequest.getMaxResults(),
                 calendarRequest.getDateTime(),
                 calendarRequest.getQuery())

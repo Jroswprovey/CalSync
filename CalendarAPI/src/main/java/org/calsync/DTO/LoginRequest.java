@@ -5,15 +5,27 @@
 
 package org.calsync.DTO;
 
+
 public class LoginRequest {
     private String email;
     private String password;
+    private String accessToken;
+
 
     public String getEmail() {
         return email;
     }
+
     public String getPassword() {
         return password;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public void setEmail(String email) {

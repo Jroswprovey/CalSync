@@ -21,7 +21,7 @@ import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
 
-public class CalendarService {
+public class GoogleCalendarAPIService {
 
     private static final String APPLICATION_NAME = "MyCalendarApp";
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
@@ -49,7 +49,7 @@ public class CalendarService {
             throws IOException {
 
         // Load client secrets from the resource file.
-        InputStream in = CalendarService.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+        InputStream in = GoogleCalendarAPIService.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new IOException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
@@ -67,7 +67,7 @@ public class CalendarService {
 
     public static Events getEvents(int maxResults, DateTime dateTime,String query) throws GeneralSecurityException, IOException {
 
-        Calendar service = CalendarService.getCalendarService();
+        Calendar service = GoogleCalendarAPIService.getCalendarService();
 
         return service.events().list("primary")
                 .setQ(query)
@@ -78,6 +78,10 @@ public class CalendarService {
                 .execute();
 
     }
+
+
+
+
 
 
 
