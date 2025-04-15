@@ -1,5 +1,4 @@
-
-// Alex 
+// Alex
 // Accepts a POST /api/auth/login request
 // Reads email + password from the frontend
 // Validates credentials (mock logic for now)
@@ -10,12 +9,21 @@
 
 package org.calsync.controller;
 
+import com.google.api.client.auth.oauth2.BearerToken;
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.services.calendar.Calendar;
 import org.calsync.DTO.LoginRequest;
+import org.calsync.Service.MongoDBService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -26,12 +34,36 @@ public class AuthController {
         public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
+        String accessToken = loginRequest.getAccessToken();
 
-        // TEMP: Replace this with real database check later
-        if (email.equalsIgnoreCase("test@email.com") && password.equals("1234")) {
+
+        if (MongoDBService.userExist(email)) {
+            if (Objects.equals(MongoDBService.getPass(email), password)){
+
+                //creates an authorized credential from the token received from the front end
+                Credential credential = new Credential(BearerToken.authorizationHeaderAccessMethod())
+                        .setAccessToken(accessToken);
+
+                //creates an authorized calendar object that can be used to query that specific users calendar
+                try {
+
+                    Calendar service = new Calendar.Builder(
+                            GoogleNetHttpTransport.newTrustedTransport(),
+                            GsonFactory.getDefaultInstance(),
+                            credential
+                    ).setApplicationName("CalSync").build();
+
+                } catch (GeneralSecurityException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+
+
             return ResponseEntity.ok(Map.of(
-                "message", "Login successful",
-                "token", "fake-jwt-token-123"
+                "message", "Login successful"
             ));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)

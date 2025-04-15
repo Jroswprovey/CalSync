@@ -6,7 +6,6 @@
 package org.calsync.DTO;
 
 
-
 public class LoginRequest {
     private String email;
     private String password;
