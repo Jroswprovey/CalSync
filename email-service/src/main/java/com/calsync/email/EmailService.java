@@ -1,22 +1,48 @@
-package com.calsync.email;
+package org.calsync.Service;
 
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class EmailService {
 
-    // Retrieve email credentials from environment variables
-    static String USERNAME = System.getenv("EMAIL_USER");
-    static String PASSWORD = System.getenv("EMAIL_PASS");
+    private static final String USERNAME;
+    private static final String PASSWORD;
 
-    public static void sendEmail(String to, String subject, String text) {
+    private static final Properties props = new Properties();
+
+
+
+    //Pulls username and password from email.properties file to use for sending out emails
+    static {
+        Properties configProps = new Properties();
+        try (InputStream input = EmailService.class.getClassLoader().getResourceAsStream("email.properties")){
+            if (input != null){
+                    configProps.load(input);
+            } else {
+                System.err.println("email.properties not found");
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        USERNAME = configProps.getProperty("email.username", "");
+        PASSWORD = configProps.getProperty("email.password", "");
+
         // Set up SMTP properties for Gmail
-        Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
+
+
+    }
+
+
+    public static boolean sendEmail(String recipient, String subject, String text) {
 
         // Create a session with an authenticator using your credentials
         Session session = Session.getInstance(props, new Authenticator() {
@@ -30,25 +56,20 @@ public class EmailService {
             // Create the email message
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(USERNAME));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
             message.setSubject(subject);
             message.setText(text);
 
             // Send the email
             Transport.send(message);
-            System.out.println("Email sent successfully to " + to);
+            System.out.println("Email sent successfully to " + recipient);
+            return true;
         } catch (MessagingException e) {
             e.printStackTrace();
             System.err.println("Error sending email: " + e.getMessage());
+            return false;
         }
     }
 
-    // Main method for testing the email functionality
-    public static void main(String[] args) {
-        // Replace with a valid recipient email for testing
-        sendEmail("recipient@example.com", "Test Email", "This is a test email from CalSync's email service.");
-    }
 }
-
-
 
