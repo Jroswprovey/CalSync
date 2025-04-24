@@ -7,12 +7,29 @@ const SignUpPage = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSignUp = () => {
-    if (name && email && password) {
-      navigate("/dashboard");
-    } else {
-      alert("Please fill out all fields.");
-    }
+  const handleSignUp = async () => {
+      if (name && email && password) {
+
+
+          const credentials = { email, password };
+
+          try {
+              const response = await fetch("http://localhost:8080/api/auth/signup", {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(credentials),
+              });
+
+          }catch (error) {
+              console.log(error);
+          }
+
+
+      } else {
+          alert("Please fill out all fields.");
+      }
   };
 
   return (
