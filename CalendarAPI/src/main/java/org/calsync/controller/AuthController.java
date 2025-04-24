@@ -14,7 +14,7 @@ import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.calendar.Calendar;
-import org.calsync.DTO.LoginRequest;
+import org.calsync.DTO.UserRequest;
 import org.calsync.Service.MongoDBService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +31,10 @@ import java.util.Objects;
 public class AuthController {
 
     @PostMapping("/login")
-        public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        String email = loginRequest.getEmail();
-        String password = loginRequest.getPassword();
-        String accessToken = loginRequest.getAccessToken();
+        public ResponseEntity<?> login(@RequestBody UserRequest userRequest) {
+        String email = userRequest.getEmail();
+        String password = userRequest.getPassword();
+        String accessToken = userRequest.getAccessToken();
 
 
         if (MongoDBService.userExist(email)) {
@@ -69,6 +69,22 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("Invalid credentials");
         }
+    }
+
+    @PostMapping("/signup")
+        public ResponseEntity<?> signup(@RequestBody UserRequest userRequest){
+        String email = userRequest.getEmail();
+        String password = userRequest.getPassword();
+
+        System.out.println("Signup request received: " + userRequest.getEmail());
+
+        MongoDBService.insertUser(email,password);
+
+
+
+        return ResponseEntity.ok(Map.of(
+                "message","Signup successful"
+        ));
     }
 }
 

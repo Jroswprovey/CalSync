@@ -6,7 +6,7 @@
 package org.calsync.DTO;
 
 
-public class LoginRequest {
+public class UserRequest {
     private String email;
     private String password;
     private String accessToken;
@@ -24,16 +24,5 @@ public class LoginRequest {
         return accessToken;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
 

@@ -23,5 +23,5 @@ dependencies {
     implementation 'com.sun.mail:jakarta.mail:2.0.1'
     implementation 'org.junit.jupiter:junit-jupiter:5.11.1'
     implementation 'com.google.api-client:google-api-client:2.0.0'
-    implementation 'org.mongodb:mongodb-driver-sync:5.1.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 }

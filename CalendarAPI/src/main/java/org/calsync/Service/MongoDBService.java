@@ -8,9 +8,15 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import static com.mongodb.client.model.Filters.eq;
 
 public class MongoDBService {
+
+    private static MongoClient mongoClient;
 
 
     private static MongoDatabase database;
@@ -18,8 +24,19 @@ public class MongoDBService {
     //Authorizes with mongoDB when class is initialized
     static {
 
+        Properties configProps = new Properties();
+        try (InputStream input = EmailService.class.getClassLoader().getResourceAsStream("mongoDBAuth.properties")){
+            if (input != null){
+                configProps.load(input);
+            } else {
+                System.err.println("mongoDBAuth.auth not found");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         // url for the connection string
-        String connectionString = "mongodb+srv://sshah6:db_password@calendarappcluster.tilrgx6.mongodb.net/?retryWrites=true&w=majority&appName=CalendarAppCluster";
+        String connectionString = configProps.getProperty("mongoDBAuth.auth", "");
 
         // Construct a ServerApi instance
         ServerApi serverApi = ServerApi.builder()
@@ -33,7 +50,7 @@ public class MongoDBService {
 
 
         // Create a new client and connect to the server
-        try (MongoClient mongoClient = MongoClients.create(settings)) {
+        mongoClient = MongoClients.create(settings);
 
             try {
                 // Connect to the CalendarApp database in Atlas
@@ -46,7 +63,9 @@ public class MongoDBService {
             } catch (MongoException e) {
                 e.printStackTrace();
             }
-        }
+
+
+
 
     }
 
